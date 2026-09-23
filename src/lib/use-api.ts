@@ -1,6 +1,8 @@
 'use client';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { ApiError } from './api';
+
+const toApiError = (e: unknown) => (e instanceof ApiError ? e : new ApiError('ERROR', 'Something went wrong. Please try again.'));
 
 /** Loads data from the central API service with loading / error / reload state. */
 export function useApi<T>(loader: () => Promise<T>, deps: unknown[] = []) {
@@ -8,7 +10,7 @@ export function useApi<T>(loader: () => Promise<T>, deps: unknown[] = []) {
   const [error, setError] = useState<ApiError | null>(null);
   const [loading, setLoading] = useState(true);
   const loaderRef = useRef(loader);
-  loaderRef.current = loader;
+  useLayoutEffect(() => { loaderRef.current = loader; });
 
   const reload = useCallback(async () => {
     setLoading(true);
@@ -16,14 +18,20 @@ export function useApi<T>(loader: () => Promise<T>, deps: unknown[] = []) {
     try {
       setData(await loaderRef.current());
     } catch (e) {
-      setError(e instanceof ApiError ? e : new ApiError('ERROR', 'Something went wrong. Please try again.'));
+      setError(toApiError(e));
     } finally {
       setLoading(false);
     }
   }, []);
 
   useEffect(() => {
-    void reload();
+    let alive = true;
+    Promise.resolve()
+      .then(() => { if (alive) { setLoading(true); setError(null); } return loaderRef.current(); })
+      .then((d) => { if (alive) setData(d); })
+      .catch((e) => { if (alive) setError(toApiError(e)); })
+      .finally(() => { if (alive) setLoading(false); });
+    return () => { alive = false; };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, deps);
 

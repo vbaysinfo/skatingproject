@@ -10,7 +10,7 @@ import { DOCUMENT_TYPES, toFilePayload } from '@/lib/files';
 import { formatDate, formatMoney, labelize } from '@/lib/format';
 import { Container, Card } from '@/components/ui/Card';
 import { Button, ButtonLink } from '@/components/ui/Button';
-import { Checkbox, Field, FormError, Select } from '@/components/ui/Form';
+import { Checkbox, FormError, Select } from '@/components/ui/Form';
 import { LoadingState } from '@/components/ui/States';
 
 const DOC_TYPES = ['BIRTH_CERTIFICATE', 'STUDENT_ID', 'PHOTO', 'MEDICAL_CONSENT', 'ADDRESS_PROOF', 'OTHER'];

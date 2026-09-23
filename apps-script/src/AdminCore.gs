@@ -242,7 +242,7 @@ function actionAdminBulkStatus(p, ctx) {
 /* ------------------------------------------------------------------ */
 
 /**
- * target: eventPoster | eventRules | eventSchedule | gallery | programImage |
+ * target: image | eventPoster | eventRules | eventSchedule | gallery | programImage |
  * siteLogo | heroImage | aboutImage | sponsorLogo | announcementImage |
  * achievementImage | studentPhoto | studentDocument | websiteDocument
  */
@@ -295,6 +295,9 @@ function actionAdminUpload(p, ctx) {
       actionAdminUpdateSettings({ settings: s }, ctx);
       break;
     }
+    case 'image':
+      up = saveUpload(file, 'WEBSITE/Banners', { allowedTypes: IMAGE_TYPES, public: true, prefix: 'image' });
+      break;
     case 'websiteDocument':
       up = saveUpload(file, 'WEBSITE/Documents', { allowedTypes: DOCUMENT_TYPES, public: true });
       break;

@@ -13,6 +13,26 @@ import { Checkbox, FormError } from '@/components/ui/Form';
 import { LoadingState } from '@/components/ui/States';
 import { Badge } from '@/components/ui/Badge';
 
+/** Mirrors the backend rule (Events.gs parseAgeGroup): age on the event start date. */
+function ageGroupRange(text: string): { min?: number; max?: number } | null {
+  const s = (text || '').toLowerCase();
+  if (!s || /senior|open|all/.test(s)) return null;
+  let m = s.match(/(?:under|u)[\s-]*(\d{1,2})/);
+  if (m) return { max: +m[1]! - 1 };
+  m = s.match(/(\d{1,2})\s*(?:-|to)\s*(\d{1,2})/);
+  if (m) return { min: +m[1]!, max: +m[2]! };
+  m = s.match(/(?:above|over)\s*(\d{1,2})/) || s.match(/(\d{1,2})\s*\+/);
+  return m ? { min: +m[1]! } : null;
+}
+
+function ageOn(dob: string, on: string): number | null {
+  const a = /^(\d{4})-(\d{2})-(\d{2})/.exec(dob), b = /^(\d{4})-(\d{2})-(\d{2})/.exec(on);
+  if (!a || !b) return null;
+  let age = +b[1] - +a[1];
+  if (+b[2] < +a[2] || (+b[2] === +a[2] && +b[3] < +a[3])) age--;
+  return age;
+}
+
 const STEPS = [
   { key: 'profile', label: 'Profile', icon: UserRound },
   { key: 'category', label: 'Category', icon: ListChecks },
@@ -39,12 +59,15 @@ export function RegisterFlow({ event, currency }: { event: EventDetail; currency
     if (!profile) return map;
     event.categories.forEach((c) => {
       const g = c.gender.toUpperCase();
+      const range = ageGroupRange(c.ageGroup);
+      const age = ageOn(profile.dob, event.startDate);
       if ((g === 'MALE' || g === 'FEMALE') && profile.gender && profile.gender !== g) map[c.id] = `For ${labelize(g).toLowerCase()} athletes`;
+      else if (range && age !== null && ((range.min !== undefined && age < range.min) || (range.max !== undefined && age > range.max))) map[c.id] = `Not your age group (age ${age})`;
       else if (c.registrationState !== 'OPEN') map[c.id] = c.registrationState === 'FULL' ? 'Category full' : 'Closed';
       else map[c.id] = null;
     });
     return map;
-  }, [profile, event.categories]);
+  }, [profile, event.categories, event.startDate]);
 
   async function submit() {
     setBusy(true);

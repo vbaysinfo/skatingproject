@@ -333,8 +333,8 @@ function pointsFor(position, categoryName, raceType, year, rules) {
   if (!pos) return 0;
   const candidates = rules.filter(function (r) {
     if (upper(r.Status || 'ACTIVE') !== 'ACTIVE' || toNumber(r.Position) !== pos) return false;
-    const c = str(r.Category);
-    if (c && c !== str(categoryName) && c !== str(raceType)) return false;
+    const c = upper(r.Category);
+    if (c && c !== upper(categoryName) && c !== upper(raceType)) return false;
     if (str(r.Year) && str(r.Year) !== str(year)) return false;
     return true;
   });
