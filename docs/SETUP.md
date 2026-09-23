@@ -24,7 +24,7 @@ spreadsheet instead (**Extensions → Apps Script**) after step 7.
 
 ## 4. Add the script files
 
-Copy every file from `apps-script/src/` into the project (one script file per `.gs` file, same names).
+**Easiest:** open `apps-script/dist/Code.gs` (all backend code in one file), copy everything, and paste it over the default `Code.gs` in the editor. Or copy every file from `apps-script/src/` into the project (one script file per `.gs` file, same names). To rebuild the bundle after changes: `npm run bundle:gas`.
 Open **Project Settings → Show "appsscript.json"** and replace its contents with `apps-script/src/appsscript.json`.
 
 Using [clasp](https://github.com/google/clasp) instead:

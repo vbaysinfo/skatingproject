@@ -9,7 +9,8 @@
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "test:backend": "node apps-script/tests/run-tests.js",
-    "mock:api": "node apps-script/dev/mock-server.js"
+    "mock:api": "node apps-script/dev/mock-server.js",
+    "bundle:gas": "node scripts/bundle-apps-script.js"
   },
   "dependencies": {
     "lucide-react": "^1.47.0",
