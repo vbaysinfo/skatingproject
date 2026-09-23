@@ -8,14 +8,16 @@
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
-    "test:backend": "node apps-script/tests/run-tests.js"
+    "test:backend": "node apps-script/tests/run-tests.js",
+    "mock:api": "node apps-script/dev/mock-server.js"
   },
   "dependencies": {
     "lucide-react": "^1.47.0",
     "next": "^16.3.6",
     "qrcode": "^1.5.4",
     "react": "^19.3.0",
-    "react-dom": "^19.3.0"
+    "react-dom": "^19.3.0",
+    "server-only": "^0.0.1"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.3.3",

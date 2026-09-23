@@ -1,0 +1,93 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-display: var(--font-display-face), 'Arial Narrow', ui-sans-serif, system-ui, sans-serif;
+
+  --color-ink: #0a1628;
+  --color-ink-soft: #1e2a3d;
+  --color-muted: #5b6678;
+  --color-line: #e3e8ef;
+  --color-surface: #f5f7fb;
+
+  --color-brand-50: #eef4ff;
+  --color-brand-100: #dbe6ff;
+  --color-brand-200: #bcd0ff;
+  --color-brand-300: #8eb0ff;
+  --color-brand-400: #5a86f7;
+  --color-brand-500: #3461e8;
+  --color-brand-600: #1f45cf;
+  --color-brand-700: #1a37a6;
+  --color-brand-800: #1a3184;
+  --color-brand-900: #0f1f57;
+
+  --color-accent-50: #fff4ed;
+  --color-accent-100: #ffe5d3;
+  --color-accent-400: #ff8a47;
+  --color-accent-500: #ff6a13;
+  --color-accent-600: #eb5205;
+  --color-accent-700: #c23f07;
+
+  --radius-card: 1.25rem;
+  --shadow-card: 0 1px 2px rgb(10 22 40 / 0.04), 0 8px 24px -12px rgb(10 22 40 / 0.18);
+  --shadow-lift: 0 2px 4px rgb(10 22 40 / 0.06), 0 22px 40px -18px rgb(10 22 40 / 0.35);
+
+  --animate-fade-up: fade-up 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  --animate-shimmer: shimmer 1.4s linear infinite;
+
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: none; }
+  }
+  @keyframes shimmer {
+    from { background-position: -400px 0; }
+    to { background-position: 400px 0; }
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+body {
+  background: #ffffff;
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-brand-400);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+.font-display { font-family: var(--font-display); letter-spacing: 0.005em; }
+
+.skeleton {
+  background: linear-gradient(90deg, #eef1f6 0px, #f7f9fc 160px, #eef1f6 320px);
+  background-size: 800px 100%;
+  animation: var(--animate-shimmer);
+  border-radius: 0.75rem;
+}
+
+/* Diagonal speed-line texture used on dark hero bands */
+.speed-lines {
+  background-image: repeating-linear-gradient(115deg, rgb(255 255 255 / 0.045) 0 2px, transparent 2px 22px);
+}
+
+.prose-content p { margin: 0 0 0.9em; line-height: 1.75; }
+.prose-content p:last-child { margin-bottom: 0; }
+
+.scrollbar-none { scrollbar-width: none; }
+.scrollbar-none::-webkit-scrollbar { display: none; }
+
+@media print {
+  .no-print { display: none !important; }
+  body { background: #fff; }
+}

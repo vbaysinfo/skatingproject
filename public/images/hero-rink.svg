@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0a1628"/><stop offset="0.55" stop-color="#0f1f57"/><stop offset="1" stop-color="#1a37a6"/></linearGradient>
+    <linearGradient id="streak" x1="0" x2="1"><stop offset="0" stop-color="#ff6a13" stop-opacity="0"/><stop offset="1" stop-color="#ff6a13"/></linearGradient>
+    <linearGradient id="streak2" x1="0" x2="1"><stop offset="0" stop-color="#8eb0ff" stop-opacity="0"/><stop offset="1" stop-color="#8eb0ff"/></linearGradient>
+    <radialGradient id="glow" cx="0.78" cy="0.3" r="0.5"><stop offset="0" stop-color="#3461e8" stop-opacity="0.55"/><stop offset="1" stop-color="#3461e8" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect width="1600" height="900" fill="url(#glow)"/>
+  <g fill="none" stroke="#ffffff">
+    <ellipse cx="980" cy="1020" rx="1180" ry="520" stroke-opacity="0.10" stroke-width="120"/>
+    <ellipse cx="980" cy="1020" rx="1060" ry="440" stroke-opacity="0.18" stroke-width="3"/>
+    <ellipse cx="980" cy="1020" rx="960" ry="380" stroke-opacity="0.14" stroke-width="3" stroke-dasharray="26 22"/>
+    <ellipse cx="980" cy="1020" rx="860" ry="320" stroke-opacity="0.12" stroke-width="3"/>
+    <ellipse cx="980" cy="1020" rx="760" ry="262" stroke-opacity="0.09" stroke-width="3" stroke-dasharray="26 22"/>
+  </g>
+  <g transform="skewX(-28)">
+    <rect x="820" y="210" width="620" height="10" rx="5" fill="url(#streak)"/>
+    <rect x="980" y="250" width="520" height="6" rx="3" fill="url(#streak2)"/>
+    <rect x="760" y="300" width="760" height="14" rx="7" fill="url(#streak)" opacity="0.85"/>
+    <rect x="1050" y="350" width="440" height="6" rx="3" fill="url(#streak2)"/>
+    <rect x="900" y="395" width="600" height="9" rx="4.5" fill="url(#streak)" opacity="0.6"/>
+  </g>
+  <g transform="translate(1300 560)">
+    <circle r="92" fill="#ff6a13"/>
+    <circle r="62" fill="#0f1f57"/>
+    <circle r="22" fill="#ff6a13"/>
+    <g stroke="#ffffff" stroke-opacity="0.35" stroke-width="6" stroke-linecap="round">
+      <line x1="0" y1="-50" x2="0" y2="-30"/><line x1="0" y1="30" x2="0" y2="50"/><line x1="-50" y1="0" x2="-30" y2="0"/><line x1="30" y1="0" x2="50" y2="0"/>
+    </g>
+  </g>
+  <g transform="translate(1080 610)">
+    <circle r="56" fill="#ffffff" fill-opacity="0.9"/>
+    <circle r="36" fill="#1a37a6"/>
+    <circle r="12" fill="#ffffff" fill-opacity="0.9"/>
+  </g>
+  <g fill="#ffffff" fill-opacity="0.06">
+    <circle cx="180" cy="160" r="3"/><circle cx="420" cy="90" r="2"/><circle cx="640" cy="200" r="2.5"/><circle cx="260" cy="420" r="2"/>
+  </g>
+</svg>
